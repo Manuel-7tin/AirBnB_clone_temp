@@ -5,15 +5,16 @@
 import cmd
 import sys
 
+
 class HBNBCommand(cmd.Cmd):
     """HBNBCommand class."""
-    
+
     prompt = '(hbnb) '
 
     def do_help(self, line):
         """Display help."""
         # Your help logic here
-    
+
     def do_quit(self, line):
         """Quit the shell."""
         return True
@@ -35,4 +36,3 @@ if __name__ == '__main__':
         HBNBCommand().cmdloop()
     except KeyboardInterrupt:
         print("\nExiting...")
-

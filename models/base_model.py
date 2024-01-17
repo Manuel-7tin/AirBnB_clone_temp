@@ -5,9 +5,10 @@
 import uuid
 from datetime import datetime
 
+
 class BaseModel:
     """BaseModel class."""
-    
+
     def __init__(self, *args, **kwargs):
         """Initialize BaseModel."""
         if kwargs:
@@ -15,7 +16,11 @@ class BaseModel:
                 if key == '__class__':
                     continue  # Skip __class__ attribute
                 if key in ['created_at', 'updated_at']:
-                    setattr(self, key, datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
+                    setattr(
+                            self,
+                            key,
+                            datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                            )
                 else:
                     setattr(self, key, value)
         else:
@@ -24,7 +29,10 @@ class BaseModel:
 
     def __str__(self):
         """String representation of BaseModel."""
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(
+                self.__class__.__name__,
+                self.id, self.__dict__
+                )
 
     def save(self):
         """Update updated_at with the current datetime."""
@@ -37,7 +45,6 @@ class BaseModel:
         obj_dict['created_at'] = self.created_at.isoformat()
         obj_dict['updated_at'] = self.updated_at.isoformat()
         return obj_dict
-
 
     def from_dict(self, dict_data):
         """Create instance from dictionary data"""
